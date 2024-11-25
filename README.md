@@ -7,6 +7,7 @@ The project is aimed at working with collecting information and sending it to te
 ## Roadmap
 
 - 25/11/24 | Initial commit.
+- 25/11/24 | Init logger.
 
 
 
