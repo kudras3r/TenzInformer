@@ -26,7 +26,7 @@ func NewLogger(level int, logFile string) (*Logger, error) {
 
 	return &Logger{
 		level:  level,
-		logger: log.New(file, "", log.Ldate|log.Ltime|log.Lshortfile),
+		logger: log.New(file, "", log.Ldate|log.Ltime),
 	}, nil
 }
 
@@ -36,15 +36,15 @@ func (l *Logger) write(level int, message string) {
 	if level >= l.level {
 		switch level {
 		case DEBUG:
-			prefix = "< DEBUG >"
+			prefix = "< DEBUG > "
 		case INFO:
-			prefix = "< INFO >"
+			prefix = "< INFO > "
 		case WARN:
-			prefix = "< WARN >"
+			prefix = "< WARN > "
 		case ERROR:
-			prefix = "< ERROR >"
+			prefix = "< ERROR > "
 		case FATAL:
-			prefix = "< FATAL >"
+			prefix = "< FATAL > "
 		}
 
 		l.logger.Println(prefix + message)
