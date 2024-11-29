@@ -49,7 +49,7 @@ func (l *Logger) write(level int, message string) {
 
 		l.logger.Println(prefix + message)
 		if level == FATAL {
-			os.Exit(0)
+			os.Exit(1)
 		}
 	}
 }
@@ -72,5 +72,4 @@ func (l *Logger) ERROR(message string) {
 
 func (l *Logger) FATAL(message string) {
 	l.write(FATAL, message)
-	os.Exit(0)
 }

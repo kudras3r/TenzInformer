@@ -33,11 +33,10 @@ import (
 	"github.com/kudras3r/TenzInfromer/internal/lib/logger"
 )
 
-// hardcode ! TODO
 const (
 	defLogFile  = "/var/log/tenzir-example/tenzinformer.log"
 	defConfFile = "/etc/tenzir-example/config.yml"
-	tmpJSONFile = "/home/kud/Code/go/src/TenzInformer/storage/tmp.json"
+	tmpJSONFile = "/var/tmp/tenzir-example/tmp.json"
 )
 
 func main() {
@@ -60,7 +59,7 @@ func main() {
 	// grab info
 	PCInfo, err := grab.PCInfo(*confFile)
 	if err != nil {
-		logger.ERROR("cannot grab information: " + err.Error())
+		logger.FATAL("cannot grab information: " + err.Error())
 	} else {
 		logger.INFO("info grabbed from: " + *confFile)
 	}
