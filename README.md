@@ -12,9 +12,15 @@ The project is aimed at working with collecting information and sending it to te
 ```
 
 ## Unstallation
-In TenzirInformer dir:
+In TenzInformer dir:
 ```bash
   sudo ./informer.sh uninstall
+```
+
+## Without installation
+In TenzInformer dir:
+```bash
+  sudo go run cmd/informer/main.go -log your_log_file.log -conf your_conf_file.yaml
 ```
 
 
@@ -35,6 +41,7 @@ In TenzirInformer dir:
 - 26/11/24 | Add grabber.
 - 27/11/24 | Add sender. Final app building steps.
 - 28/11/24 | Add installer / uninstaller.
+- 03/12/24 | Add first tests / logrotate conf installation step.
 
 
 ## Authors
