@@ -12,6 +12,7 @@ LOG_DIR="/var/log/tenzir-example"
 CONFIG_DIR="/etc/tenzir-example"
 TMP_DIR="/var/tmp/tenzir-example"
 BINARY_NAME="informer"
+LOGROTATE_CONF="/etc/logrotate.d/${APP_NAME}"
 
 USER=$(whoami)
 GROUP=$(id -gn)
@@ -76,6 +77,20 @@ WantedBy=multi-user.target
 EOL
 }
 
+create_logrotate_conf() {
+  cat <<EOL > $LOGROTATE_CONF
+${LOG_DIR}/${APP_NAME}.log
+{
+  missingok
+  hourly
+  copytruncate
+  rotate 5
+  notifempty
+  size 10M
+}
+EOL
+}
+
 install() {
   # pkg update / upgrade
   echo -e "${BLUE}Updating packages...${NC}"
@@ -96,6 +111,14 @@ install() {
     (snap install go --classic) &
     spin $!
   fi
+
+  # install logrotate
+  echo -e "${BLUE}Installing logrotate...${NC}"
+  if ! command -v logrotate &> /dev/null; then
+    (apt install logrotate) &
+    spin $!
+  fi
+
   echo -e "\n"
 
   # mk dirs / log file / cfg file
@@ -110,6 +133,9 @@ install() {
 
   echo -e "${GREEN}Creating config file...${NC}"
   create_config
+
+  echo -e "${GREEN}Creating logrotate conf in: ${LOGROTATE_CONF}...${NC}"
+  create_logrotate_conf
   
   echo -e "${GREEN}Creating tmp directory: ${TMP_DIR}${NC}"
   mkdir -p $TMP_DIR
@@ -137,7 +163,6 @@ install() {
   echo -e "\n"
 }
 
-# Функция деинсталляции
 uninstall() {
   echo -e "${YELLOW}Stopping service...${NC}"
   systemctl stop $APP_NAME
