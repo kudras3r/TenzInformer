@@ -5,33 +5,33 @@ The project is aimed at working with collecting information and sending it to te
 
 ## Installation
 ```bash
-  git clone https://github.com/kudras3r/TenzInformer.git
-  cd TenzInformer
-  chmod +x informer.sh 
-  sudo ./informer.sh install 
+git clone https://github.com/kudras3r/TenzInformer.git
+cd TenzInformer
+chmod +x informer.sh 
+sudo ./informer.sh install 
 ```
 
 ## Unstallation
 In TenzInformer dir:
 ```bash
-  sudo ./informer.sh uninstall
+sudo ./informer.sh uninstall
 ```
 
 ## Without installation
 In TenzInformer dir:
 ```bash
-  sudo go run cmd/informer/main.go -log your_log_file.log -conf your_conf_file.yaml
+sudo go run cmd/informer/main.go -log your_log_file.log -conf your_conf_file.yaml
 ```
 
 
 ## Usage/Examples
 
 ```bash
-  sudo systemctl enable tenzinformer.service
-  sudo systemctl start tenzinformer.service
-  sudo systemctl status tenzinformer.service
-  sudo systemctl stop tenzinformer.service
-  sudo systemctl disable tenzinformer.service
+sudo systemctl enable tenzinformer.service
+sudo systemctl start tenzinformer.service
+sudo systemctl status tenzinformer.service
+sudo systemctl stop tenzinformer.service
+sudo systemctl disable tenzinformer.service
 ```
 
 ## Roadmap
